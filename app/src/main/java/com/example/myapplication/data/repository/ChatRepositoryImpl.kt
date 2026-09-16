@@ -6,6 +6,7 @@ import com.example.myapplication.data.network.dto.NewMessageDto
 import com.example.myapplication.data.network.dto.toDomain
 import com.example.myapplication.domain.ChatRepository
 import com.example.myapplication.domain.Message
+import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -30,6 +31,14 @@ class ChatRepositoryImpl(
             AppResult.Failure.NoInternet
         } catch (e: SocketTimeoutException) {
             AppResult.Failure.Timeout
+        } catch (e: HttpException) {
+            // Handle MockAPI "Max number of elements reached" error
+            val errorBody = e.response()?.errorBody()?.string()
+            if (errorBody?.contains("Max number of elements") == true) {
+                AppResult.Failure.Unknown("Server is full. Please try again later.")
+            } else {
+                AppResult.Failure.Unknown("Server error: ${e.code()}")
+            }
         } catch (e: IOException) {
             AppResult.Failure.NoInternet
         } catch (e: Exception) {

@@ -48,13 +48,18 @@ class ChatViewModel(
     fun send() {
         if (myName.isBlank() || draft.isBlank()) return
         viewModelScope.launch {
-            when (repository.sendMessage(myName, draft)) {
+            when (val r = repository.sendMessage(myName, draft)) {
                 is AppResult.Success -> {
                     draft = ""
                     load()
                 }
                 is AppResult.Failure -> {
-                    uiState = ChatUiState.Error("Could not send. Check your connection.")
+                    val message = if (r is AppResult.Failure.Unknown) {
+                        r.message ?: "Could not send. Check your connection."
+                    } else {
+                        "Could not send. Check your connection."
+                    }
+                    uiState = ChatUiState.Error(message)
                 }
             }
         }
