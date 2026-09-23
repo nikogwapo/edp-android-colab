@@ -13,16 +13,16 @@ class UserUnitTest {
     fun testUserDtoToDomainMapper() {
         val dto = UserDto(
             id = "12",
-            fullname = " Juan Dela Cruz ",
-            email = " juan.test01@liceo.test ",
+            fullname = " Niko Edryann S. Batasin-in ",
+            email = " niko.batasin-in@liceo.test ",
             password = "secret123",
             birthdate = "2004-05-17"
         )
         val user = dto.toDomain()
 
         assertEquals("12", user.id)
-        assertEquals("Juan Dela Cruz", user.fullName)
-        assertEquals("juan.test01@liceo.test", user.email)
+        assertEquals("Niko Edryann S. Batasin-in", user.fullName)
+        assertEquals("niko.batasin-in@liceo.test", user.email)
         assertEquals("2004-05-17", user.birthdate)
     }
 

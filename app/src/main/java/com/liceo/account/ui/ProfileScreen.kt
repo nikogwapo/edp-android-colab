@@ -102,8 +102,8 @@ fun ProfileScreenPreview() {
         ProfileScreen(
             user = User(
                 id = "12",
-                fullName = "Juan Dela Cruz",
-                email = "juan.test01@liceo.test",
+                fullName = "Niko Edryann S. Batasin-in",
+                email = "niko.batasin-in@liceo.test",
                 birthdate = "2004-05-17"
             ),
             onLogout = {}
