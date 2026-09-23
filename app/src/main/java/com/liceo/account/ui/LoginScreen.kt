@@ -11,7 +11,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.liceo.account.ui.theme.LiceoAccountTheme
 
 @Composable
 fun LoginScreen(
@@ -91,3 +93,16 @@ fun LoginScreen(
         }
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+fun LoginScreenPreview() {
+    LiceoAccountTheme {
+        LoginScreen(
+            state = AuthUiState.Idle,
+            onLogin = { _, _ -> },
+            onGoToRegister = {}
+        )
+    }
+}
+

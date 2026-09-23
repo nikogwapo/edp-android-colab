@@ -8,8 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.liceo.account.domain.model.User
+import com.liceo.account.ui.theme.LiceoAccountTheme
 import java.util.Calendar
 
 @Composable
@@ -92,3 +94,20 @@ fun ageFrom(birthdate: String): Int? {
     }
     return age
 }
+
+@Preview(showBackground = true)
+@Composable
+fun ProfileScreenPreview() {
+    LiceoAccountTheme {
+        ProfileScreen(
+            user = User(
+                id = "12",
+                fullName = "Juan Dela Cruz",
+                email = "juan.test01@liceo.test",
+                birthdate = "2004-05-17"
+            ),
+            onLogout = {}
+        )
+    }
+}
+
